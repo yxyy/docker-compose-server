@@ -1,8 +1,6 @@
 
 ### docker compose 容器集群管理实例
 
-我的`sever`目录结构是：`/usr/local/docker/server`，如果不同，你需要修改`docker-compose.yaml`对应的挂载路径
-
 nginx 配置的项目在 `/data/` 下，这里不提供项目，自己创建测试项目或更改配置指向自己的项目
 
 在保证已安装`docker`和`docker compose`的情况下，直接运行
