@@ -20,3 +20,9 @@ RUN curl -L -o /tmp/reids.tar.gz https://codeload.github.com/phpredis/phpredis/t
 #开启DG
 RUN docker-php-ext-configure gd --with-webp=/usr/include/webp --with-jpeg=/usr/include --with-freetype=/usr/include/freetype2/ && \
     docker-php-ext-install -j$(nproc) gd
+
+#安装 composer
+RUN php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" && \
+    php composer-setup.php && \
+    php -r "unlink('composer-setup.php');" && \
+    mv composer.phar /usr/local/bin/composer
