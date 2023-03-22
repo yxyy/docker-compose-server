@@ -7,11 +7,11 @@ services:
     ports:
       - '80:80'
     environment:
-      TZ: 'Asia/Shanghai'
+      TZ: 'Asia/Shanghai' #时区
     volumes:
-      - '/usr/local/docker/server/nginx/:/etc/nginx' #配置
+      - './nginx/:/etc/nginx' #配置
       - '/var/log/nginx/:/var/log/nginx/' #日志
-      - '/data/:/data' #项目
+      - '/data/:/data' #项目路径
   php:
     container_name: php7.4
     restart: always
@@ -23,8 +23,8 @@ services:
     environment:
       TZ: 'Asia/Shanghai'
     volumes:
-      - '/usr/local/docker/server/php7.4/etc/:/usr/local/etc/' #配置
-      - '/usr/local/docker/server/php7.4/log/:/usr/local/log/' #配置
+      - './php7.4/etc/:/usr/local/etc/' #配置
+      - './php7.4/log/:/usr/local/log/' #配置
       - '/data/php/:/data/php/' #项目
   mysql:
     container_name: mysql
@@ -34,11 +34,11 @@ services:
       - '3306:3306'
     environment:
        TZ: 'Asia/Shanghai'
-       MYSQL_ROOT_PASSWORD: 'root'
+       MYSQL_ROOT_PASSWORD: 'root' #密码
     volumes:
-      - '/usr/local/docker/server/mysql/data:/var/lib/mysql' #数据data
-      - '/usr/local/docker/server/mysql/conf.d/:/etc/mysql/conf.d'
-      - '/usr/local/docker/server/mysql/my.cnf:/etc/my.cnf'
+      - './mysql/data:/var/lib/mysql' #数据data
+      - './mysql/conf.d/:/etc/mysql/conf.d'
+      - './mysql/my.cnf:/etc/my.cnf'
   redis:
     container_name: redis
     image: redis
@@ -49,5 +49,5 @@ services:
     environment:
       TZ: 'Asia/Shanghai'
     volumes:
-      - '/usr/local/docker/server/redis/data/:/data' #数据
-      - '/usr/local/docker/server/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf' #配置
+      - './redis/data/:/data' #数据
+      - './redis/conf/redis.conf:/usr/local/etc/redis/redis.conf' #配置
