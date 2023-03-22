@@ -1,0 +1,52 @@
+version: '3'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: always
+    ports:
+      - '80:80'
+    environment:
+      TZ: 'Asia/Shanghai'
+    volumes:
+      - '/usr/local/docker/server/nginx/:/etc/nginx' #配置
+      - '/var/log/nginx/:/var/log/nginx/' #日志
+      - '/data/:/data' #项目
+  php:
+    container_name: php7.4
+    restart: always
+    build:
+      context: php7.4
+      dockerfile: Dockerfile
+    ports:
+      - '9000:9000'
+    environment:
+      TZ: 'Asia/Shanghai'
+    volumes:
+      - '/usr/local/docker/server/php/etc/:/usr/local/etc/' #配置
+      - '/usr/local/docker/server/php/log/:/usr/local/log/' #配置
+      - '/data/php/:/data/php/' #项目
+  mysql:
+    container_name: mysql
+    image: mysql
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+       TZ: 'Asia/Shanghai'
+       MYSQL_ROOT_PASSWORD: 'root'
+    volumes:
+      - '/usr/local/docker/server/mysql/data:/var/lib/mysql' #数据data
+      - '/usr/local/docker/server/mysql/conf.d/:/etc/mysql/conf.d'
+      - '/usr/local/docker/server/mysql/my.cnf:/etc/my.cnf'
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    command: ['redis-server', '/usr/local/etc/redis/redis.conf']
+    environment:
+      TZ: 'Asia/Shanghai'
+    volumes:
+    - '/usr/local/docker/server/redis/data/:/data' #数据
