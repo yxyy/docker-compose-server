@@ -23,8 +23,8 @@ services:
     environment:
       TZ: 'Asia/Shanghai'
     volumes:
-      - '/usr/local/docker/server/php/etc/:/usr/local/etc/' #配置
-      - '/usr/local/docker/server/php/log/:/usr/local/log/' #配置
+      - '/usr/local/docker/server/php7.4/etc/:/usr/local/etc/' #配置
+      - '/usr/local/docker/server/php7.4/log/:/usr/local/log/' #配置
       - '/data/php/:/data/php/' #项目
   mysql:
     container_name: mysql
@@ -49,4 +49,5 @@ services:
     environment:
       TZ: 'Asia/Shanghai'
     volumes:
-    - '/usr/local/docker/server/redis/data/:/data' #数据
+      - '/usr/local/docker/server/redis/data/:/data' #数据
+      - '/usr/local/docker/server/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf' #配置
