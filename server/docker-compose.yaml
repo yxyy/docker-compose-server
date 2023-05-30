@@ -32,7 +32,7 @@ services:
     container_name: php8
     restart: always
     build:
-      context: php7.4
+      context: php8
       dockerfile: Dockerfile
     ports:
       - '9001:9000'
