@@ -35,7 +35,7 @@ services:
       context: php7.4
       dockerfile: Dockerfile
     ports:
-      - '9001:9001'
+      - '9001:9000'
     environment:
       TZ: 'Asia/Shanghai'
     volumes:
