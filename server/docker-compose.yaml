@@ -28,6 +28,21 @@ services:
       - './php7.4/log/:/usr/local/log/' #配置
       - '/data/php/:/data/php/' #项目
       - '/etc/hosts/:/etc/hosts' #域名解析
+  php8:
+    container_name: php8
+    restart: always
+    build:
+      context: php7.4
+      dockerfile: Dockerfile
+    ports:
+      - '9001:9001'
+    environment:
+      TZ: 'Asia/Shanghai'
+    volumes:
+      - './php8/etc/:/usr/local/etc/' #配置
+      - './php8/log/:/usr/local/log/' #配置
+      - '/data/php/:/data/php/' #项目
+      - '/etc/hosts/:/etc/hosts' #域名解析
   mysql:
     container_name: mysql
     image: mysql

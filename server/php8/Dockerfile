@@ -12,7 +12,7 @@ RUN apt install -y libwebp-dev libjpeg-dev libpng-dev libfreetype6-dev
 RUN docker-php-source extract && docker-php-ext-install pdo pdo_mysql
 
 #安装redis扩展
-RUN curl -L -o /tmp/reids.tar.gz https://codeload.github.com/phpredis/phpredis/tar.gz/5.0.2 && \
+RUN curl -L -o /tmp/reids.tar.gz https://github.com/phpredis/phpredis/archive/refs/tags/5.3.7.tar.gz && \
     mkdir -p /usr/src/php/ext/phpredis && \
     tar -xvf /tmp/reids.tar.gz --strip-components 1 -C /usr/src/php/ext/phpredis && \
     docker-php-ext-install phpredis
