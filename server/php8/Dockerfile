@@ -8,7 +8,8 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
 #安装必要依赖
 RUN apt install -y libwebp-dev libjpeg-dev libpng-dev libfreetype6-dev
 
-#安装扩展  #开启pdo扩展
+#安装扩展,  使用docker-php源码方式安装
+#docker-php-source extract下载官方扩展源码到`/usr/src/php`，并开启pdo扩展
 RUN docker-php-source extract && docker-php-ext-install pdo pdo_mysql
 
 #开启DG
