@@ -1,4 +1,4 @@
-FROM  php:8.0.25-cli
+FROM php:8.0-fpm
 
 #切换国内apt源 和 更新包依赖
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
@@ -22,7 +22,7 @@ RUN curl -L -o /tmp/reids.tar.gz https://github.com/phpredis/phpredis/archive/re
     docker-php-ext-install phpredis
 
 #安装swoole
-RUN curl -L -o /tmp/swoole.tar.gz https://github.com/swoole/swoole-src/archive/refs/tags/v5.0.1.tar.gz && \
+RUN curl -L -o /tmp/swoole.tar.gz https://github.com/swoole/swoole-src/archive/refs/tags/v5.0.2.tar.gz && \
     mkdir -p /usr/src/php/ext/swoole && \
-    tar -zxvf swoole.tar.gz  --strip-components 1 -C  /usr/src/php/ext/swoole && rm -rf /tmp/swoole.tar.gz && \
+    tar -zxvf /tmp/swoole.tar.gz  --strip-components 1 -C  /usr/src/php/ext/swoole && rm -rf /tmp/swoole.tar.gz && \
     docker-php-ext-install swoole
