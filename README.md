@@ -1,5 +1,5 @@
 
-### docker compose 容器集群管理实例
+### docker 一键搭建多版本 PHP + nginx + redis + mysql 开发环境
 
 nginx 配置的项目在 `/data/` 下，这里不提供项目，自己创建测试项目或更改配置指向自己的项目
 
