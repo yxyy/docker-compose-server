@@ -11,12 +11,13 @@ RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
     apt update
 
 #安装必要依赖
-RUN apt install -y libwebp-dev libjpeg-dev libpng-dev libfreetype6-dev libicu-dev
+RUN apt install -y libwebp-dev libjpeg-dev libpng-dev libfreetype6-dev libicu-dev libzip-dev
 
 #安装扩展  #开启pdo扩展  intl 扩展
 RUN docker-php-source extract &&  \
     docker-php-ext-install pdo pdo_mysql &&  \
-    docker-php-ext-install intl
+    docker-php-ext-install intl && \
+    docker-php-ext-install zip
 
 #安装redis扩展
 RUN curl -L -o /tmp/reids.tar.gz https://codeload.github.com/phpredis/phpredis/tar.gz/5.0.2 && \
