@@ -1,15 +1,22 @@
 FROM php:7.4-fpm
 
 #切换国内apt源 和 更新包依赖
-RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
-    sed -i 's/security.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
+#RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
+#    sed -i 's/security.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
+#    apt update
+
+# 切换到阿里云的 apt 源并更新包依赖
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
+    sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
     apt update
 
 #安装必要依赖
 RUN apt install -y libwebp-dev libjpeg-dev libpng-dev libfreetype6-dev libicu-dev
 
 #安装扩展  #开启pdo扩展  intl 扩展
-RUN docker-php-source extract && docker-php-ext-install pdo pdo_mysql && docker-php-ext-install intl
+RUN docker-php-source extract &&  \
+    docker-php-ext-install pdo pdo_mysql &&  \
+    docker-php-ext-install intl
 
 #安装redis扩展
 RUN curl -L -o /tmp/reids.tar.gz https://codeload.github.com/phpredis/phpredis/tar.gz/5.0.2 && \
