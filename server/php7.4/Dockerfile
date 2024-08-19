@@ -15,9 +15,7 @@ RUN apt install -y libwebp-dev libjpeg-dev libpng-dev libfreetype6-dev libicu-de
 
 #安装扩展  #开启pdo扩展  intl 扩展
 RUN docker-php-source extract &&  \
-    docker-php-ext-install pdo pdo_mysql &&  \
-    docker-php-ext-install intl && \
-    docker-php-ext-install zip
+    docker-php-ext-install pdo pdo_mysql intl zip
 
 #安装redis扩展
 RUN curl -L -o /tmp/reids.tar.gz https://codeload.github.com/phpredis/phpredis/tar.gz/5.0.2 && \
