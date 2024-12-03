@@ -1,7 +1,7 @@
-FROM php:8.0-fpm
+FROM php:8.2-fpm
 
 #切换国内apt源 和 更新包依赖
-RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
+RUN touch /etc/apt/sources.list && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     sed -i 's/security.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && \
     apt update
 
